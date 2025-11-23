@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-const REMOVED = "YOUR_HUGGINGFACE_API_KEY_HERE";
+const REMOVED = process.env.REMOVED;
 
 export async function POST(req: Request) {
   try {
