@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-const REMOVED = process.env.REMOVED;
+const HF_API_key = process.env.HF_API_key;
 
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
 
-    if (!REMOVED) throw new Error("HF API token missing.");
+    if (!HF_API_key) throw new Error("HF API token missing.");
 
     const response = await axios.post(
       "https://router.huggingface.co/v1/chat/completions",
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       },
       {
         headers: {
-          Authorization: `Bearer ${REMOVED}`,
+          Authorization: `Bearer ${HF_API_key}`,
           "Content-Type": "application/json"
         }
       }
